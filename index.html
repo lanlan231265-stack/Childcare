@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>兒童托育服務法 實務問答 Q&A 知識庫</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #eff6ff;
+      --text-main: #1f2937;
+      --text-sub: #4b5563;
+      --bg-page: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      
+      /* 指定色系規範 */
+      --penalty-color: #7e22ce;       /* 紫色：罰則 */
+      --penalty-bg: #faf5ff;
+      --penalty-border: #d8b4fe;
+      
+      --sublaw-color: #dc2626;        /* 紅色：待訂子法/公告 */
+      --sublaw-bg: #fef2f2;
+      --sublaw-border: #fca5a5;
+
+      --quote-bg: #f1f5f9;
+      --quote-border: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* 頂部 Header */
+    header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: white;
+      padding: 36px 20px 24px;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px; }
+    header p { font-size: 0.95rem; opacity: 0.9; max-width: 800px; margin: 0 auto; }
+    
+    .legend-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+      font-size: 0.85rem;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      backdrop-filter: blur(4px);
+    }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-penalty { background-color: #c084fc; }
+    .dot-sublaw { background-color: #f87171; }
+
+    /* 主容器 */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+    /* 控制列（置頂） */
+    .controls-wrapper {
+      position: sticky;
+      top: 0;
+      background-color: var(--bg-page);
+      padding: 16px 0 10px 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .search-box input {
+      width: 100%;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.2s;
+      background-color: var(--card-bg);
+      margin-bottom: 12px;
+    }
+    .search-box input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-sub);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { background: var(--primary-light); color: var(--primary); }
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* 問答卡片 */
+    .qa-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .qa-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .badge-wrap { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .category-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      background-color: var(--primary-light);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .article-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #047857;
+      background-color: #ecfdf5;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .question {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .answer-box {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    /* 條文與立法說明折疊區 */
+    details {
+      background-color: var(--quote-bg);
+      border-left: 4px solid var(--quote-border);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 0.88rem;
+    }
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #334155;
+      outline: none;
+      user-select: none;
+    }
+    details .detail-content {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      line-height: 1.6;
+      color: #475569;
+    }
+
+    /* 醒目提示盒（待訂子法與罰則） */
+    .highlight-box {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+    .sublaw-box {
+      background-color: var(--sublaw-bg);
+      border-left: 4px solid var(--sublaw-color);
+      border-right: 1px solid var(--sublaw-border);
+      border-top: 1px solid var(--sublaw-border);
+      border-bottom: 1px solid var(--sublaw-border);
+      color: var(--sublaw-color);
+    }
+    .penalty-box {
+      background-color: var(--penalty-bg);
+      border-left: 4px solid var(--penalty-color);
+      border-right: 1px solid var(--penalty-border);
+      border-top: 1px solid var(--penalty-border);
+      border-bottom: 1px solid var(--penalty-border);
+      color: var(--penalty-color);
+    }
+    .box-title { font-weight: 700; display: block; margin-bottom: 4px; }
+
+    /* 子法彙整表格區 */
+    .table-container {
+      overflow-x: auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 20px;
+      padding: 16px;
+    }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    th { background: #f8fafc; font-weight: 700; color: #334155; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+
+    .no-results {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-sub);
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>兒童托育服務法 實務問答 Q&A 知識庫</h1>
+    <p>涵蓋居家托育人員、托育機構、專業主管/托育人員、居家托育服務中心全案條文與法理指引</p>
+    <div class="legend-bar">
+      <div class="legend-item">
+        <div class="legend-dot dot-penalty"></div>
+        <span>紫色區塊：法定罰則與法律效果</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot dot-sublaw"></div>
+        <span>紅色區塊：授權待訂子法／辦法／公告</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="controls-wrapper">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜尋條次、關鍵字（例如：收托人數、定型化契約、專心托育、同住家人、BLS、調處、記點、監視器）...">
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-category="all">全部 QA</button>
+        <button class="tab-btn" data-category="nanny">居家托育人員（保母）</button>
+        <button class="tab-btn" data-category="institution">托育機構（托嬰／公托／互助）</button>
+        <button class="tab-btn" data-category="staff">托育專業人員（主任／托育員）</button>
+        <button class="tab-btn" data-category="center">居家托育服務中心</button>
+        <button class="tab-btn" data-category="sublaws">授權子法總表</button>
+      </div>
+    </div>
+
+    <div id="mainContent">
+      <div class="qa-list" id="qaList"></div>
+    </div>
+  </div>
+
+  <script>
+    const qaDatabase = [
+      // === 居家托育人員 ===
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 13 條、第 45 條、第 88 條",
+        q: "擔任居家托育人員需要具備什麼資格與手續？施行前修畢托育課程但尚未取得證書者如何銜接？",
+        a: "需成年並取得保母/托育人員技術士證，或高級中等以上學校幼保、幼教、家政、護理相關科系畢業。填具申請書並檢具文件向地方主管機關辦理登記，取得居家托育服務證書後始得提供服務；若需暫停收托需向主管機關申請。本法施行前已取得證書者得繼續服務；已修畢課程領有結業證書但尚未取得證書者，自本法施行日起 1 年內得辦理登記取得證書提供服務。",
+        rawLaw: "第十三條第一項：符合第四十五條規定具托育專業人員資格者，應填具申請書並檢具相關文件、資料，向直轄市、縣（市）主管機關辦理登記，於取得居家托育服務證書後，始得提供居家托育服務。\n第八十八條第二項：本法施行前已修畢托育人員專業訓練課程領有結業證書，尚未取得居家托育服務證書者，自本法施行之日起一年內，得依第十三條第一項規定向主管機關辦理登記並取得證書後提供服務。",
+        intent: "明確居家托育人員法定資格，建立暫停收托管理機制；基於信賴保護與法安定性原則，保障既有執業者與受訓完畢者之權益，並設定一年過渡落日期間。",
+        sublaw: "【待訂子法】居家托育人員之登記、收托人數、輔導、管理、檢查、廢止登記及其他應遵行事項之辦法，由中央主管機關定之（第13條第5項）。",
+        penalty: "【法定罰則】\n1. 不具資格收托者：處新臺幣 2 萬～10 萬元罰鍰，令停止收托並立即轉介兒童，得公布姓名（第75條第1項）。\n2. 具資格未辦登記或暫停登記期間收托者：處 1 萬～5 萬元罰鍰並令限期辦理登記；屆期未辦理處 2 萬～10 萬元罰鍰並令 1 個月內轉介兒童（第75條第2項）。\n3. 拒不配合轉介命令者：處 2 萬～10 萬元罰鍰並強制轉介（第75條第4項）。"
+      },
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 14 條、第 18 條",
+        q: "在宅提供托育服務，現場證書懸掛與保險有何強制規定？居托中心有何義務？",
+        a: "在宅托育人員應將服務證書懸掛於服務登記處所足資辨識之明顯處。居家托育人員應於收托兒童當日「前」完成投保專業責任保險。保險期間發生保險事故時，居家托育服務中心應主動協助辦理理賠事宜。",
+        rawLaw: "第十四條：提供在宅托育服務之居家托育人員，應將居家托育人員服務證書懸掛於服務登記處所足資辨識之明顯處。\n第十八條第一項：居家托育人員應於收托兒童當日前，完成投保專業責任保險。\n第十八條第二項：前項保險期間發生保險事故時，居家托育服務中心應主動協助辦理理賠事宜。",
+        intent: "確保家長清晰識別合法保母；課予收托前投保強制責任以分散照顧風險，並明定居托中心協助行政理賠義務。",
+        sublaw: null,
+        penalty: "【法定罰則】未依規定於收托當日前完成投保專業責任保險者，處新臺幣 1 萬元以上 5 萬元以下罰鍰，並令其限期改善，屆期未改善者，按次處罰；其情節重大或經處罰三次仍未改善者，得公布其姓名及廢止其登記（第78條第1項第5款）。"
+      },
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 15 條、第 16 條",
+        q: "居家托育的收費及退費標準如何訂定？保母可以自行增加收費名目嗎？",
+        a: "中央主管機關公告全國一致之收退費項目及調整原則；地方主管機關應審酌 CPI 及家庭可支配所得分區訂定收退費基準並公告，且應至少每 2 年定期檢討。居家托育人員不得收取主管機關公告項目及其金額基準以外之任何費用。",
+        rawLaw: "第十五條第一項：居家托育服務收費及退費項目之訂定與調整原則，由中央主管機關公告之。\n第十五條第三項：直轄市、縣（市）主管機關應依第一項公告之收費、退費項目及調整原則，並依轄區內居家托育服務收托方式及收費情形，分區訂定托育服務收費及退費之基準，並公告之。\n第十六條：居家托育人員，不得收取前條第三項直轄市、縣（市）主管機關公告之收費與退費項目及其金額基準以外之費用。",
+        intent: "中央統籌收退費項目與調幅機制以求一致性，地方依物價與所得分區訂定上限，杜絕巧立名目收費之亂象。",
+        sublaw: "【待訂子法/公告】中央主管機關公告收費及退費項目與調整原則（第15條第1項）；地方主管機關分區訂定收退費基準公告並至少每 2 年定期檢討（第15條第3項、第4項）。",
+        penalty: "【法定罰則】違反第十六條規定，收取公告之收費、退費項目或其金額基準以外之費用者，處新臺幣 1 萬元以上 5 萬元以下罰鍰，並令其限期改善，屆期未改善者，按次處罰；其情節重大或經處罰三次仍未改善者，得公布姓名及廢止其登記（第78條第1項第3款）。"
+      },
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 17 條",
+        q: "收托時是否強制簽訂書面契約？契約內容有何限制？契約影本需送交哪裡？",
+        a: "居家托育人員提供服務，應與家長就權利義務關係訂定書面契約，並提供契約影本予居家托育服務中心。契約格式與內容需符合中央主管機關訂定之定型化契約範本與應記載及不得記載事項。若收托型態變更（如日托變全日托）涉及收托人數計算，應重新簽約並送交影本。",
+        rawLaw: "第十七條第一項：居家托育人員提供托育服務，應與送托兒童之法定代理人或實際照顧兒童之人，就托育服務之權利義務關係，訂定書面契約；並提供契約影本予居家托育服務中心。\n第十七條第二項：前項書面契約之格式及內容，中央主管機關應訂定定型化契約範本與其應記載及不得記載事項。",
+        intent: "明確化托育契約權利義務，保障雙方權益；因收托型態變更涉及人數計算，明定變更時應重訂契約並送交備查。",
+        sublaw: "【待訂子法】書面契約格式與內容，由中央主管機關訂定定型化契約範本與其應記載及不得記載事項（第17條第2項）。",
+        penalty: "【法定罰則】\n1. 未與家長訂定書面契約者：處新臺幣 1 萬～5 萬元罰鍰並令限改，屆期未改按次處罰（第78條第1項第4款）。\n2. 契約內容違反定型化契約應記載及不得記載事項者：令限期改善，屆期未改善處新臺幣 6 千～3 萬元罰鍰，並按次處罰（第83條第2項）。\n3. 未依規定交付書面契約影本予居托中心者：令限期改善，屆期未改善處新臺幣 6 千～3 萬元罰鍰，並按次處罰（第84條第1項第2款）。"
+      },
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 19 條",
+        q: "保母在收托時間內的行為限制有哪些？若遇到突發緊急事件該如何處置？",
+        a: "收托時間應於處所專心托育，不得兼任其他職務、經營事業或從事影響托育之活動；不得使 6 歲以下或需要特別看護之兒童獨處或由不適當之人代為照顧。因緊急事件（突發疾病事故等）離開處所前，應通知居托中心或家長安排適當人員協助臨時照顧。",
+        rawLaw: "第十九條第一項：居家托育人員於托育服務時間，應於托育服務處所專心托育，不得有下列行為：一、收托時間兼任其他職務、經營事業，或從事影響托育服務之活動。二、使六歲以下或需要特別看護之收托兒童獨處或由不適當之人代為照顧。三、其他足以影響托育服務致損及收托兒童安全之行為。\n第十九條第二項：居家托育人員因緊急事件離開前項處所前，應通知居家托育服務中心或法定代理人或實際照顧兒童之人，安排居家托育人員或其他適當人員，協助臨時照顧收托兒童。",
+        intent: "0～2 歲兒童照顧密度高，明文禁止兼職、經營事業或獨留兒童；定明不適當之人定義（無行為能力人、7～12 歲兒童或客觀有安全之虞者）；規範緊急突發狀況之通報與代托程序。",
+        sublaw: null,
+        penalty: "【法定罰則】未依第十九條規定於收托時間及托育服務處所專心托育者，處新臺幣 1 萬元以上 5 萬元以下罰鍰，並令其限期改善，屆期未改善者，按次處罰；其情節重大或經處罰三次仍未改善者，得公布其姓名及廢止其登記（第78條第1項第6款）。"
+      },
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 55 條、第 61 條第 2 項",
+        q: "同住家人若有不良前科或涉案，會影響保母在家收托嗎？",
+        a: "與居家托育人員共同居住之人若曾犯性侵害、毒品、重大兒虐、家暴等不適任罪行，或經專家小組認定有傷害兒童之虞，居家托育人員應以提供「到宅托育服務」（至家長家照顧）為限，禁止在自己家收托。若共同居住之人涉案於調查審理期間，主管機關亦得令其以到宅托育為限。",
+        rawLaw: "第五十五條第一項：與居家托育人員共同居住之人，有下列各款情形之一者，居家托育人員應以提供到宅托育服務為限：一、有第四十九條各款情形之一。二、有第五十條第一項各款情形之一。三、經直轄市、縣（市）主管機關認定有客觀事實認有傷害兒童之虞。\n第六十一條第二項：與居家托育人員共同居住之人涉有違反第五十七條第一項規定情事，於行政調查、刑事偵查或法院審理期間，直轄市、縣（市）主管機關得令居家托育人員以提供到宅托育服務為限。",
+        intent: "居家托育環境屬私人場域，同住家人之素行對受托兒童威脅甚鉅，特限制其僅能提供到宅服務，兼顧兒童安全與保母工作權益。",
+        sublaw: null,
+        penalty: "【法定罰則】未依第五十五條第一項規定以提供到宅托育服務為限，或未依主管機關依第六十一條第二項命令以提供到宅托育為限者，處新臺幣 6 萬元以上 30 萬元以下罰鍰，並令其限期改善，屆期未改善者，按次處罰；其情節重大或經處罰三次仍未改善者，廢止其登記（第71條第2款、第5款）。"
+      },
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 13 條第 5 項、第 71 條、第 78 條",
+        q: "居家托育人員違規超額收托（超收）之處罰標準為何？",
+        a: "依違規超收人數規模區分罰則：違規超收人數達 5 人以上者，規模已達托育機構標準，處以高額罰鍰並得廢止登記；違規超收人數未滿 5 人者，處 1 萬至 5 萬元罰鍰並令限期改善。",
+        rawLaw: "第十三條第五項：第一項居家托育人員之登記、收托人數、輔導、管理、檢查、廢止登記及其他應遵行事項之辦法，由中央主管機關定之。",
+        intent: "超收 5 人以上已達機構托育規模，為遏止重大超收違規並衡平機構罰責，特加重處罰以維護受托品質。",
+        sublaw: "【待訂子法】居家托育人員登記、收托人數等辦法由中央主管機關定之（第13條第5項）。",
+        penalty: "【法定罰則】\n1. 超收人數達 5 人以上者：處新臺幣 6 萬～30 萬元罰鍰，並令限期改善，屆期未改善者按次處罰；情節重大或罰 3 次未改者廢止登記（第71條第1款）。\n2. 超收人數未滿 5 人者：處新臺幣 1 萬～5 萬元罰鍰，並令限期改善，屆期未改善者按次處罰；情節重大或罰 3 次未改得公布姓名及廢止登記（第78條第1項第2款）。"
+      },
+      {
+        category: "nanny",
+        categoryName: "居家托育人員",
+        article: "第 86 條",
+        q: "居家托育人員違規記點制度如何運作？退場機制為何？",
+        a: "保母違反本法除罰鍰或限改外，主管機關得依危害程度記違規點數。2 年內違規點數達一定次數應命暫停一定期間新收托，並協助家長轉托；5 年內暫停新收托達 2 次，再違規遭記點者，主管機關應廢止其登記。經廢止登記者，自廢止之日起 1 年內不得重新辦理登記。已廢證者不予記點。",
+        rawLaw: "第八十六條第一項至第四項：居家托育人員違反本法規定，除依規定處罰、要求限期改善或為其他必要之處置外，得依其對托育品質及兒童安全之危害程度記違規點數。前項情形，已廢證者，不予記違規點數。居家托育人員於二年內違規點數達一定次數者，主管機關應命其暫停一定期間之新收托服務，並依家長意願協助轉托；於五年內暫停新收托達二次，再違規且遭記違規點數者，廢止其登記。依前項規定廢止登記者，自廢止之日起一年內不得辦理登記為居家托育人員。",
+        intent: "參考道路交通管理處罰條例，建立累積記點與退場制度，警示累犯並建立適任人員淘汰機制。",
+        sublaw: "【待訂子法】違規記點之適用條款、應記點數、暫停新收托期間、通知程序、廢止登記條件等辦法，由中央主管機關定之（第86條第5項）。",
+        penalty: "【行政處分】命暫停新收托服務、廢止登記且 1 年內停權不得辦理登記。"
+      },
+
+      // === 托育機構 ===
+      {
+        category: "institution",
+        categoryName: "托育機構",
+        article: "第 26 條、第 27 條、第 31 條、第 70 條",
+        q: "托育機構設立主體與許可程序為何？政府提供公有不動產支援與未立案收托罰則？",
+        a: "政府、學校、法人、團體、醫院、商業或自然人均得設立托嬰中心；取得許可證書後始得提供服務並應懸掛於明顯處。政府委託非營利法人辦理托育機構，應無償提供經管公有不動產使用。未經許可設立機構即收托兒童者，處 6 萬至 30 萬元罰鍰並令停止收托、公布地址與姓名及限期 1 個月轉介兒童；拒不配合者再處 6 萬至 30 萬元罰鍰並強制轉介。",
+        rawLaw: "第二十六條第二項：設立托嬰中心，應檢具相關文件、資料，向直轄市、縣（市）主管機關申請許可，於取得許可證書後，始得提供托育服務。\n第三十一條第一項：政府機關（構）、公立學校配合國家政策委託非營利性質法人辦理托育機構，需使用其經管之公有不動產時，應以無償方式提供受託之非營利性質法人使用。\n第七十條第一項、第四項：未經申請許可設立托育機構即收托兒童，處行為人新臺幣六萬元以上三十萬元以下罰鍰，並令其停止收托；其拒不配合者，按次處罰……拒不配合前項轉介命令者，處新臺幣六萬元以上三十萬元以下罰鍰，直轄市、縣（市）主管機關並應強制轉介其收托之兒童。",
+        intent: "多元化設立主體並推動公辦民營無償使用公有財產；對未立案黑牌托嬰中心採重罰、公布場所地址及強制轉介，杜絕非法收托。",
+        sublaw: "【待訂子法】托嬰中心及公共托育家園設立許可要件、面積、設施設備、人員配置、照顧比例等辦法由中央主管機關定之（第27條第4項）；互助式托育機構辦法由中央會商相關部會定之（第28條第6項）。",
+        penalty: "【法定罰則】未立案收托處行為人新臺幣 6 萬～30 萬元罰鍰、公布姓名場所、限期 1 個月轉介；不配合轉介再處 6 萬～30 萬元罰鍰並強制轉介（第70條）。"
+      },
+      {
+        category: "institution",
+        categoryName: "托育機構",
+        article: "第 29 條、第 80 條",
+        q: "收托兒童滿 2 歲後，可以繼續留在托嬰中心嗎（延托規定）？",
+        a: "收托兒童滿 2 歲而未進入教保服務機構（幼兒園）者，托育機構得繼續收托至其「滿 3 歲前一日」。地方主管機關應於兒童滿 2 歲前 3 個月提供銜接轉介教保服務之協助。",
+        rawLaw: "第二十九條：托育機構收托之兒童滿二歲而未進入教保服務機構者，托育機構得繼續收托至其滿三歲前一日。",
+        intent: "銜接滿 2 歲幼兒進入幼兒園之空窗期，確保托育照顧連續性，並課予政府提早轉銜輔導責任。",
+        sublaw: null,
+        penalty: "【法定罰則】非屬第二十九條規定情形收托二歲以上兒童，或違反同條規定收托兒童之年限者，處負責人新臺幣 1 萬元以上 5 萬元以下罰鍰，並令其限期改善，屆期未改善者，按次處罰；情節重大或罰 3 次未改得令停招 6 個月至 1 年、停辦 1 至 3 年或廢止許可（第80條第1項第2款）。"
+      },
+      {
+        category: "institution",
+        categoryName: "托育機構",
+        article: "第 26 條、第 27 條",
+        q: "公托家園、公設民營及職場托嬰中心之「優先收托順序」為何？",
+        a: "公托家園及公設民營托嬰中心應訂定一定比率優先收托需要協助之弱勢兒童。政府機關設立之托嬰中心招收順序為：(1) 員工之直系血親卑親屬 → (2) 需要協助之兒童 → (3) 托嬰中心員工子女 → (4) 其他兒童。企業/法人設立之職場托育機構以所屬員工子女為主，有餘額經核准後始得收托一般兒童。",
+        rawLaw: "第二十六條第三項：政府機關（構）依性別平等工作法第二十三條第一項第二款規定設立之托嬰中心，應依下列順序招收兒童：一、員工之直系血親卑親屬。二、需要協助之兒童。三、該托嬰中心之員工子女。四、前三款以外之兒童。\n第二十七條第一項：直轄市、縣（市）主管機關應自行或委託辦理公共托育家園及托嬰中心；並訂定一定比率，優先收托需要協助之兒童。",
+        intent: "落實弱勢優先照顧原則，並配合性平法支持友善職場托育需求。",
+        sublaw: null,
+        penalty: "【法定罰則】企業/學校/法人設立之托嬰中心未報經主管機關核准即招收一般兒童者，令限期改善，屆期未改處新臺幣 6 千～3 萬元罰鍰，並按次處罰（第84條第1項第3款）。"
+      },
+      {
+        category: "institution",
+        categoryName: "托育機構",
+        article: "第 35 條、第 36 條、第 37 條",
+        q: "托育機構收退費標準如何報核？兒童團體保險與定型化契約規定為何？",
+        a: "私立機構應依中央公告之項目用途擬訂金額，報經主管機關「核定」後始得向家長收取，不得超收核定外費用；必須與家長簽訂符合定型化規範之書面契約；應為收托兒童投保團體保險並主動協助理賠。",
+        rawLaw: "第三十五條第二項、第三項：私立托育機構得考量其營運成本，依前項中央公告項目用途擬訂金額，報經主管機關核定後收取……托育機構不得收取公告項目用途及核定金額以外之費用。\n第三十六條第一項：托育機構應與送托兒童之法定代理人或實際照顧兒童之人訂定書面契約。\n第三十七條第一項：托育機構應為其收托之兒童辦理團體保險。",
+        intent: "收退費採嚴格報核制以保障家長權益；團保由中央統籌採購，課予機構登載與代收代繳義務（若家長未繳費致未生效等不可歸責機構事由不罰）。",
+        sublaw: "【待訂子法】中央公告收退費項目及用途（第35條第1項）；中央訂定定型化契約範本與其應記載及不得記載事項（第36條第2項）；中央訂定兒童團體保險辦法（第37條第3項）。",
+        penalty: "【法定罰則】\n1. 未報核定或收取核定外費用：處負責人新臺幣 6 萬～30 萬元罰鍰並令限改（第72條第1項第5、6款）。\n2. 未依規定辦理兒童團體保險：處負責人新臺幣 3 萬～30 萬元罰鍰並令限改（第73條第1項第2款）。\n3. 契約違反定型化規定：限改未改處 3 萬～30 萬元罰鍰；再次限改未改處 5 萬～50 萬元罰鍰（第83條第1項）。\n4. 未訂書面契約：處負責人新臺幣 1 萬～5 萬元罰鍰並令限改（第80條第1項第3款）。"
+      },
+      {
+        category: "institution",
+        categoryName: "托育機構",
+        article: "第 38 條、第 73 條、第 74 條",
+        q: "托育機構監視錄影設備之管理、影音保存天數及傳送雲端網路系統規定？",
+        a: "機構應裝設監視錄影設備，影音資料至少保存 30 日並加以保密，且應傳送至地方主管機關建置之雲端網際網路系統儲存，中央補助地方建置系統。若因政府系統故障致無法上傳等不可歸責事由不處罰機構。",
+        rawLaw: "第三十八條第一項至第二項：為維護兒童人身安全及相關證據保全，托育機構應裝設監視錄影設備，妥善管理攝錄影音資料，至少保存三十日，並加以保密。托育機構應將前項攝錄影音資料傳送至直轄市、（縣）市主管機關建置之網際網路系統儲存，不得規避、妨礙或拒絕。",
+        intent: "保全兒虐事件調查證據；強制影像傳送雲端防範人為消磁破壞；明定非故意過失之不可歸責免罰原則。",
+        sublaw: "【待訂子法】監視設備設置區域、功能、管理人員、查閱條件、抽查機制、資訊安全管理等辦法由中央主管機關定之（第38條第4項）。",
+        penalty: "【法定罰則】\n1. 未保存 30 日、未依規定提供查閱或拒絕傳送雲端：處負責人新臺幣 3 萬～30 萬元罰鍰並令限改（第73條第1項第3、4款）。\n2. 洩漏攝錄影音資料：處行為人新臺幣 3 萬～15 萬元罰鍰，併處負責人 3 萬～15 萬元罰鍰（負責人主動通報者不罰負責人）（第74條）。\n3. 監視設備設置區域或功能不合規定：處負責人新臺幣 6 千～3 萬元罰鍰並令限改（第82條第1項第2款）。"
+      },
+      {
+        category: "institution",
+        categoryName: "托育機構",
+        article: "第 27 條、第 42 條、第 72 條、第 73 條",
+        q: "托育機構超收兒童、照顧比例不符之處罰？現場應公開哪些資訊？",
+        a: "超收兒童處負責人 6 萬至 30 萬元罰鍰並令限改，屆期未改按次處罰，情節重大得令停招、停辦或廢止設立許可；照顧比例不符處負責人 3 萬至 30 萬元罰鍰。機構現場應公開托育目標、人員學經歷證照、核定與實際收托人數、管理計畫、團保及收退費金額，並應將師生照顧比配置情形揭示於明顯處。",
+        rawLaw: "第四十二條第一項、第二項：托育機構應公開托育目標內容、人員姓名證照、核定與實際人數、管理計畫、團保、收退費金額等……托育機構應將托育人員及收托兒童之配置情形，揭示於機構內明顯處所，供家長查閱。\n第七十二條第一項第一款：違反有關收托人數規定者，處負責人新臺幣六萬元以上三十萬元以下罰鍰……",
+        intent: "資訊透明化以利家長檢驗；超收嚴重危害安全，採重罰與退場機制。",
+        sublaw: "【待訂子法】托育相關人員配置、師生照顧比例、收托人數辦法由中央主管機關定之（第27條第4項）。",
+        penalty: "【法定罰則】\n1. 違規超收兒童：處負責人新臺幣 6 萬～30 萬元罰鍰，限改未改按次處罰；重大者令停招 6 個月至 1 年、停辦 1 至 3 年或廢止許可（第72條第1項第1款）。\n2. 師生照顧比例不符：處負責人新臺幣 3 萬～30 萬元罰鍰並令限改（第73條第1項第1款）。\n3. 未公開第42條第1項資訊：處負責人新臺幣 6 千～3 萬元罰鍰（第82條第1項第6款）。\n4. 未揭示師生照顧比配置情形：令限期改善未改處新臺幣 6 千～3 萬元罰鍰（第84條第1項第4款）。"
+      },
+
+      // === 托育專業人員與工作人員 ===
+      {
+        category: "staff",
+        categoryName: "托育專業人員",
+        article: "第 46 條、第 89 條",
+        q: "托育機構主管人員（主任）應具備何種資格？施行前已擔任者如何銜接？",
+        a: "需完成主管專業訓練領有結業證書，並具備幼教幼保家政護理等碩士（2 年年資）、學士（2 年年資）、專科（3 年年資）或其他專科（4 年年資）以上兒童教育保育經驗。本法施行前已擔任主管人員且具碩士 2 年經驗或高考社會行政社工及格具 2 年社福經驗者得繼續擔任。",
+        rawLaw: "第四十六條第一項：主管人員應完成直轄市、縣（市）主管機關辦理之專業訓練，領有結業證書，並具備……學歷與年資資格。\n第八十九條：本法施行前，已擔任主管人員，並有特定學經歷者，得繼續擔任主管人員。",
+        intent: "強化主管人員專業領導知能，強制要求取得主管結業證書，並定明信賴保護過渡規定。",
+        sublaw: "【待訂公告】其他經中央主管機關公告之主管人員資格（第46條第1項第5款）。",
+        penalty: "【法定罰則】托育機構聘僱主管人員資格不合規定者，處負責人新臺幣 3 萬～30 萬元罰鍰並令限期改善（第73條第1項第1款）。"
+      },
+      {
+        category: "staff",
+        categoryName: "托育專業人員",
+        article: "第 63 條、第 84 條",
+        q: "托育專業人員每年的在職研習與急救救護訓練時數規定為何？",
+        a: "每年應完成 18 小時以上托育專業研習（每 2 年需包含性平課程）。提供服務前 2 年內或服務後 3 個月內完成 8 小時兒童基本救命術（BLS）；提供服務後每 2 年內需再完成 8 小時 BLS、3 小時事故傷害預防及處理與 1 次以上緊急救護情境演習。地方政府每季至少開辦一次課程。",
+        rawLaw: "第六十三條第一項、第二項：托育專業人員每年應完成十八小時以上托育專業知能研習；每二年所接受研習，應包括性別平等課程。托育專業人員應於提供托育服務前二年內或於提供服務後三個月內完成八小時以上兒童基本救命術訓練；並於每二年內再完成八小時以上兒童基本救命術訓練、三小時以上事故傷害預防及處理與一次以上緊急救護情境演習。",
+        intent: "持續提升性平意識與實務救護技能；救命術時數納入每年 18 小時計算；課予地方政府每季辦訓責任。",
+        sublaw: "【待訂子法】研習辦理單位、師資、時數核給、救命術訓練與情境演習實施方式等辦法由中央主管機關定之（第63條第4項）。",
+        penalty: "【法定罰則】未依規定完成每年 18 小時研習、BLS 或情境演習者，令其限期改善，屆期未改善處新臺幣 6 千～3 萬元罰鍰，並按次處罰（可歸責托育機構者處罰負責人）（第84條第1項第5至7款、第3項）。"
+      },
+      {
+        category: "staff",
+        categoryName: "托育專業人員",
+        article: "第 47 條、第 48 條、第 49 條、第 69 條、第 76 條",
+        q: "禁止不當對待行為之法律責任與不適任退場機制為何？",
+        a: "不得對兒童有身心虐待、體罰、霸凌、性騷擾、不當管教或其他身心暴力行為。依情節區分法律責任：\n1. 身心虐待或情節重大體罰霸凌：處 6 萬～60 萬元罰鍰並公布姓名與機構名稱，認定終身不得任職。\n2. 情節尚非重大：處 6 千～6 萬元罰鍰並公布姓名與機構名稱（負責人主動通報者不公布機構名稱），認定 1 至 4 年不得任職。\n3. 情節輕微：得令接受 3 至 12 小時輔導管教或情緒管理課程，無正當理由不配合執行處 1 萬～5 萬元罰鍰。",
+        rawLaw: "第四十七條第一項：托育相關人員或居家托育服務中心之工作人員不得對受托兒童有身心虐待、體罰、霸凌、性騷擾、不當管教及其他對兒童之身心暴力或不當對待之行為。\n第六十九條：違反第四十七條第一項規定，對兒童有身心虐待或情節重大之體罰霸凌等行為者，處行為人新臺幣六萬元以上六十萬元以下罰鍰，並公布行為人姓名及其所屬托育機構名稱。\n第七十六條：情節尚非重大者，處行為人新臺幣六千元以上六萬元以下罰鍰，並公布行為人姓名及機構名稱。",
+        intent: "施行細則明確定義身心虐待、體罰、霸凌等行為內涵；建立重大終身退場、非重大定期退場、輕微輔導教育之三級機制。",
+        sublaw: "【待訂子法】行為定義於本法施行細則規範；情節重大處罰建立處罰資料庫由中央主管機關定之（第47條第2項）。",
+        penalty: "【法定罰則】處 6 萬～60 萬或 6 千～6 萬罰鍰、公布姓名機構名稱、終身或 1～4 年限制任職、命接受輔導課程（第69條、第76條、第77條、第49條、第50條）。"
+      },
+      {
+        category: "staff",
+        categoryName: "托育專業人員",
+        article: "第 51 條、第 60 條",
+        q: "聘僱人員前之「消極資格查核」與「異動報備」程序為何？",
+        a: "聘僱主管、托育員或工作人員前，應至資料庫查詢有無消極資格紀錄，並檢具名冊、資格證件、切結書、健檢表、3 個月內警察刑事紀錄證明書（良民證）報主管機關核准後始得聘僱；已聘僱者應定期查詢；人員有聘僱以外異動應於 14 日內報備查。",
+        rawLaw: "第六十條第三項、第四項：托育機構聘僱主管人員、機構托育人員、工作人員或居家托育服務中心受託單位聘僱工作人員前，應查詢其有無消極資格情形；已聘僱者，應定期查詢……聘僱前應檢具名冊證明等報主管機關核准；有聘僱以外之異動時，應於十四日內報主管機關備查。",
+        intent: "建立事前審查與定期查詢機制，防止不適任人員流入托育現場。",
+        sublaw: "【待訂子法】居托中心工作人員資格辦法（第45條第2項）；通報、資訊蒐集、聘僱前與期間查詢辦法由中央主管機關定之（第60條第6項）。",
+        penalty: "【法定罰則】\n1. 聘僱現職人員具消極資格或知悉未解約：處負責人/居托受託單位新臺幣 6 萬～30 萬元罰鍰並令限改（第72條）。\n2. 聘僱前未報主管機關核准：處負責人/居托受託單位新臺幣 3 萬～30 萬元罰鍰並令限改（第73條）。\n3. 聘僱前未查、未定期查詢或異動未於 14 日內報備查：處負責人/居托受託單位新臺幣 1 萬～5 萬元罰鍰（第80條）。"
+      },
+      {
+        category: "staff",
+        categoryName: "托育專業人員",
+        article: "第 59 條、第 62 條、第 74 條",
+        q: "違法通報時效為何？證書是否可以借給機構掛名？",
+        a: "執行業務知悉涉有兒虐、不當對待或不適任違法事件者，應至遲於 24 小時內通報主管機關，通報人身分保密，機構不得施予解僱、降調、減薪等不利處分。托育人員不得租借服務證書或資格證書予他人使用，機構亦不得租借證書。",
+        rawLaw: "第五十九條第一項至第三項：知悉涉有違法事件者，應通報主管機關，至遲不得超過二十四小時。通報人身分資料應予保密。不得因通報予以解僱、降調、減薪或不利處分。\n第六十二條：托育專業人員或工作人員不得租借其托育服務證書或資格證書予他人使用；機構亦不得租借證書。",
+        intent: "確立 24 小時法定通報時效與吹哨者工作權保護；杜絕證書掛名人頭歪風。",
+        sublaw: null,
+        penalty: "【法定罰則】\n1. 違法租借證書：處人員新臺幣 3 萬～15 萬元罰鍰（第74條第1項第2款）；處機構負責人新臺幣 6 萬～30 萬元罰鍰（第72條第1項第11款）。\n2. 知悉未於 24 小時內通報：處保母/機構負責人/居托受託單位新臺幣 1 萬～5 萬元罰鍰（第78條、第80條）。\n3. 機構對通報人員予以不利處分：處負責人新臺幣 1 萬～5 萬元罰鍰並令限改（第80條第1項第6款）。"
+      },
+
+      // === 居家托育服務中心 ===
+      {
+        category: "center",
+        categoryName: "居家托育服務中心",
+        article: "第 13 條、第 23 條、第 24 條",
+        q: "居家托育服務中心之法定任務有哪些？訪視檢查時保母或任何人可以拒絕嗎？",
+        a: "辦理保母之招募儲備、在職訓練、輔導訪視、監督檢查（檢查得不經事先通知）；受理登記、換證與收托異動通報；托育媒合轉介與協助簽約；照顧爭議調處；育兒諮詢宣導等。保母或登記處所內之任何人均不得規避、妨礙或拒絕檢查，亦不得藉故藏匿兒童。",
+        rawLaw: "第十三條第三項、第四項：主管機關得自行或委託居托中心辦理登記、管理、媒合、輔導、監督及檢查，檢查時並得不經事先通知。任何人不得規避、妨礙或拒絕；檢查時不得藉故藏匿兒童。\n第二十三條第一項：居家托育服務中心應辦理之七大業務事項……",
+        intent: "明定居托中心受託職掌；賦予無預警檢查權，並同時對保母及非保母之第三人課予妨礙檢查與藏匿兒童之罰責。",
+        sublaw: "【待訂子法】居家托育服務中心執行業務處理原則辦法（第23條第2項）；居托中心監督、檢查、輔導辦法（第24條第3項）。",
+        penalty: "【法定罰則】\n1. 保母規避妨礙檢查或藏匿兒童：處新臺幣 1 萬～5 萬元罰鍰並令限改，屆期未改按次處罰，重大或罰 3 次未改廢止登記（第78條第1項第1款）。\n2. 保母以外之任何人規避檢查或藏匿兒童：處新臺幣 1 萬～5 萬元罰鍰（第79條）。"
+      },
+      {
+        category: "center",
+        categoryName: "居家托育服務中心",
+        article: "第 67 條",
+        q: "家長與保母發生「照顧爭議」時，居托中心之調處機制與中止調處通報責任為何？",
+        a: "家長認保母托育品質不符期待致損害權益時，得向居托中心申請調處；調處不成立得於 30 日內向主管機關申請再次調處（同一事實調處一次為原則）。居托中心於調處過程中知悉涉及兒虐、不當對待或消極資格等違法事件時，應「立即停止調處程序」並依法於 24 小時內通報。",
+        rawLaw: "第六十七條第一項、第六項、第七項：兒童之法定代理人或實際照顧兒童之人對居托人員之服務認有照顧爭議，得向居托中心申請調處；調處不成立得於三十日內向主管機關申請再次調處……調處過程知悉涉有違法事件者，應即停止各該程序，並依第五十九條依法通報。",
+        intent: "建立行政調處機制減少司法訟累；照顧爭議調處中若發現違法兒虐應即刻切換為行政保護通報調查機制，不得私了和解。",
+        sublaw: null,
+        penalty: "【法定罰則】居托中心工作人員知悉違法事件未於 24 小時內通報者，處受託單位新臺幣 1 萬～5 萬元罰鍰並令限期改善（第80條第2項第1款）。"
+      }
+    ];
+
+    const sublawsTableData = [
+      { article: "第 7 條第 1 項第 9 款", auth: "地方主管機關", name: "違反本法應處罰鍰程度裁量基準", desc: "地方政府訂定一致性行政處罰裁量標準" },
+      { article: "第 9 條第 2 項", auth: "中央主管機關", name: "托育服務內容之實施準則", desc: "托育清潔衛生、安全、生活照護及支持服務實施標準" },
+      { article: "第 10 條第 1 項", auth: "中央主管機關", name: "兒童托育補助辦法", desc: "托育補助之對象、資格條件、額度及審核程序" },
+      { article: "第 13 條第 5 項", auth: "中央主管機關", name: "居家托育人員登記、收托人數、輔導、管理、檢查及廢止登記辦法", desc: "保母在宅與到宅登記資格、收托人數上限、輔導查核及廢證退場" },
+      { article: "第 15 條第 1 項", auth: "中央主管機關", name: "居家托育服務收費及退費項目之訂定與調整原則（公告）", desc: "全國一致之保母收退費合法項目及調幅機制" },
+      { article: "第 15 條第 3 項", auth: "地方主管機關", name: "居家托育服務分區收費及退費基準（公告）", desc: "地方審酌 CPI 及所得分區公告收退費上限，至少每 2 年檢討" },
+      { article: "第 17 條第 2 項", auth: "中央主管機關", name: "居家托育服務定型化契約範本與其應記載及不得記載事項", desc: "保母與家長簽約之權利義務、請假扣退費及解約條款" },
+      { article: "第 20 條第 1 項", auth: "地方主管機關", name: "居家托育服務緊急傷病或事故傷害之救護原則", desc: "保母緊急送醫、施救步驟及 119 通報應變指引" },
+      { article: "第 22 條第 2 項", auth: "中央主管機關", name: "定點臨時托育服務監督、檢查與輔導辦法", desc: "定點臨托之場地安全、臨托人員資格與營運規範" },
+      { article: "第 23 條第 2 項", auth: "中央主管機關", name: "居家托育服務中心執行業務處理原則等相關辦法", desc: "居托中心組織編制、督導/訪視員比例、訪視頻率與調處作業" },
+      { article: "第 24 條第 3 項", auth: "中央主管機關", name: "居家托育服務中心監督、檢查、輔導辦法", desc: "地方主管機關對受託居托中心之考核、評估與監督" },
+      { article: "第 25 條第 2 項", auth: "中央主管機關", name: "運用居家托育人員照顧安置兒童評估基準、教育訓練課程與時數、訪視頻率辦法", desc: "安置保母適任性評估、安置教育訓練課程及專案高頻率訪視" },
+      { article: "第 27 條第 4 項", auth: "中央主管機關", name: "托嬰中心及公共托育家園設立許可辦法", desc: "設立要件、面積、設備、人員配置、師生比（照顧比例）、收托人數" },
+      { article: "第 28 條第 6 項", auth: "中央會商原民會/勞動部/教育部", name: "互助式托育機構設立許可與共用場址管理辦法", desc: "偏鄉部落及職場互助機構要件與教保中心共用場址規範" },
+      { article: "第 34 條第 5 項", auth: "中央主管機關", name: "托育機構評鑑辦法", desc: "評鑑指標、實施方式、結果公布、申復、申訴與複評" },
+      { article: "第 35 條第 1 項", auth: "中央主管機關", name: "托育機構收費、退費項目及用途（公告）", desc: "全國公私立托嬰中心收退費合法項目及用途公告" },
+      { article: "第 36 條第 2 項", auth: "中央主管機關", name: "托育機構定型化契約範本與其應記載及不得記載事項", desc: "托嬰中心定型化契約規範" },
+      { article: "第 37 條第 3 項", auth: "中央主管機關", name: "托育機構收托兒童團體保險辦法", desc: "團保範圍、金額、繳退費方式、給付項目及招標投保規範" },
+      { article: "第 38 條第 4 項", auth: "中央主管機關", name: "托育機構監視錄影設備設置、影音管理、查閱及雲端資安管理辦法", desc: "監視器設置區域、30 日保存、雲端系統上傳及家長調閱辦法" },
+      { article: "第 45 條第 2 項", auth: "中央主管機關", name: "居家托育服務中心工作人員及托育機構其他人員資格辦法", desc: "訪視輔導員、督導、機構行政、廚工、護理人員之資格基準" },
+      { article: "第 46 條第 1 項第 5 款", auth: "中央主管機關", name: "托育機構主管人員資格之其他公告事項（公告）", desc: "主管人員專業資格彈性認定公告" },
+      { article: "第 57 條第 5 項", auth: "中央主管機關", name: "托育違法事件調查程序、專責人員資格與審議小組辦法", desc: "2 日內派案、30+30 日調查期限、專責人員認證與審議會組成" },
+      { article: "第 60 條第 6 項", auth: "中央主管機關", name: "不適任人員通報、資訊蒐集、聘僱前及期間查詢辦法", desc: "跨部會不適任人員資料庫介接、定期查詢流程及個資保護" },
+      { article: "第 63 條第 4 項", auth: "中央主管機關", name: "托育專業研習辦理單位、師資、時數核給、救命術與演習辦法", desc: "每年 18hr 研習、每 2 年 8hr BLS、3hr 事故預防與情境演習認證" },
+      { article: "第 86 條第 5 項", auth: "中央主管機關", name: "居家托育人員違規記點辦法", desc: "記點適用條款、點數計算、暫停新收托期間及 5 年 2 次廢證退場" },
+      { article: "第 87 條第 3 項", auth: "中央主管機關", name: "公布行為人姓名、機構名稱及場所地址期間辦法", desc: "公布違法黑名單與機構之公告期限標準" },
+      { article: "第 93 條", auth: "中央主管機關", name: "兒童托育服務法施行細則", desc: "身心虐待、體罰、霸凌、不當管教之法律定義及全案施行細則" }
+    ];
+
+    // DOM 控制
+    const mainContentEl = document.getElementById('mainContent');
+    const searchInput = document.getElementById('searchInput');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+
+    let currentTab = 'all';
+    let searchQuery = '';
+
+    function renderView() {
+      if (currentTab === 'sublaws') {
+        renderSublawsTable();
+      } else {
+        renderQA();
+      }
+    }
+
+    function renderQA() {
+      const filtered = qaDatabase.filter(item => {
+        const matchesCategory = currentTab === 'all' || item.category === currentTab;
+        const qText = (item.q + item.a + (item.sublaw || '') + (item.penalty || '') + item.article + item.intent).toLowerCase();
+        const matchesSearch = !searchQuery || qText.includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        mainContentEl.innerHTML = `<div class="no-results">查無符合「${searchQuery}」的相關法規問答。</div>`;
+        return;
+      }
+
+      mainContentEl.innerHTML = `
+        <div class="qa-list">
+          ${filtered.map(item => `
+            <div class="qa-card">
+              <div class="badge-wrap">
+                <span class="category-badge">${item.categoryName}</span>
+                <span class="article-badge">${item.article}</span>
+              </div>
+              <div class="question">Q：${item.q}</div>
+              <div class="answer-box"><strong>實務指引：</strong>${item.a}</div>
+              
+              <details>
+                <summary>點擊展開【法定條文與立法說明】</summary>
+                <div class="detail-content">
+                  <div><strong>法條條文：</strong><br>${item.rawLaw.replace(/\n/g, '<br>')}</div>
+                  <div><strong>立法說明要旨：</strong><br>${item.intent}</div>
+                </div>
+              </details>
+
+              ${item.sublaw ? `
+                <div class="highlight-box sublaw-box">
+                  <span class="box-title">授權待訂子法／辦法／公告</span>
+                  ${item.sublaw.replace(/\n/g, '<br>')}
+                </div>` : ''
+              }
+
+              ${item.penalty ? `
+                <div class="highlight-box penalty-box">
+                  <span class="box-title">法定罰則與法律效果</span>
+                  ${item.penalty.replace(/\n/g, '<br>')}
+                </div>` : ''
+              }
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderSublawsTable() {
+      const filtered = sublawsTableData.filter(item => {
+        const text = (item.article + item.auth + item.name + item.desc).toLowerCase();
+        return !searchQuery || text.includes(searchQuery.toLowerCase());
+      });
+
+      mainContentEl.innerHTML = `
+        <div class="table-container">
+          <h3 style="margin-bottom:12px; color:#1e3a8a;">全案 27 項授權子法、辦法、準則與公告彙整總表</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>條次</th>
+                <th>授權機關</th>
+                <th>法規／辦法／準則名稱或公告事項</th>
+                <th>主要規範內容與立法目的</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${filtered.map(item => `
+                <tr>
+                  <td><strong>${item.article}</strong></td>
+                  <td>${item.auth}</td>
+                  <td style="color:#dc2626; font-weight:600;">${item.name}</td>
+                  <td>${item.desc}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    // 事件監聽
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      renderView();
+    });
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTab = btn.dataset.category;
+        renderView();
+      });
+    });
+
+    // 初始渲染
+    renderView();
+  </script>
+</body>
+</html>
