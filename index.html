@@ -450,7 +450,7 @@
   <p class="pageDesc" id="pageDescText">—</p>
 
   <div class="searchBox">
-    <input type="text" id="searchInput" placeholder="搜尋關鍵字，例如：收費、通報、緊急處理、子法…">
+    <input type="text" id="searchInput" placeholder="搜尋關鍵字，可用 & + , 連結多個，例如：罰則&通報">
     <label class="searchAllToggle" id="searchAllLabel">
       <input type="checkbox" id="searchAllToggle">
       🔍 搜尋全部頁面（總則／居家托育人員／托育機構／居托服務中心一起找）
@@ -2006,6 +2006,27 @@ const qa = [
 },
 {
   cat:"penalty", pages:["home"],
+  q:"具居家托育人員資格未辦理登記證卻擅自收托兒童，會被罰多重？",
+  a:"處新臺幣1萬元以上5萬元以下罰鍰，並令限期辦理登記；屆期仍未辦理登記者，加重處新臺幣2萬元以上10萬元以下罰鍰，並令1個月內轉介收托的兒童，另得公布姓名。這個罰則額度比「完全不具資格」的情形（第75條第1項，2萬至10萬元）來得輕，因為當事人已具備資格、只是尚未完成登記手續；但如果拒不配合轉介命令，或在限期登記期間內還持續增加收托兒童，會再被加重處罰（各處2萬元以上10萬元以下罰鍰）。",
+  laws:[
+    {no:"第75條第2項",text:"具居家托育人員資格未依第十三條第一項規定辦理登記而提供居家托育服務者，或依第十三條第二項規定向主管機關申請暫停收托登記期間提供居家托育服務者，處新臺幣一萬元以上五萬元以下罰鍰，並令其限期辦理居家托育服務登記；屆期未辦理登記者，處新臺幣二萬元以上十萬元以下罰鍰，並令其於一個月內轉介其收托之兒童，另得公布其姓名。"},
+    {no:"第75條第4項",text:"拒不配合第一項或第二項轉介之命令者，處新臺幣二萬元以上十萬元以下罰鍰，直轄市、縣（市）主管機關並應強制轉介其收托之兒童。"},
+    {no:"第75條第5項",text:"第二項限期辦理登記期間，居家托育人員不得增加收托兒童。違反者，處新臺幣二萬元以上十萬元以下罰鍰，並按次處罰；直轄市、縣（市）主管機關並應強制轉介其增加收托之兒童。"}
+  ],
+  note:"與完全不具資格收托（第75條第1項）相比，本項適用對象是已具居家托育人員資格、但尚未完成登記程序即提供服務者，或暫停收托登記期間仍違規收托者，考量其已具備基本專業資格，處罰額度較輕，先給予限期辦理登記的緩衝機會；但屆期仍未改善，或拒不配合轉介、限期期間內又增加收托，則會逐步加重處罰，以督促儘速完成合法登記。"
+},
+{
+  cat:"penalty", pages:["home"],
+  q:"已經辦理暫停收托，如果還是繼續收托兒童，會怎樣？",
+  a:"不行，這樣算違法。居家托育人員一旦向主管機關申請暫停收托服務，在暫停收托登記期間內就不能再提供居家托育服務；如果這段期間仍然繼續收托兒童，會被處新臺幣1萬元以上5萬元以下罰鍰，並令限期辦理居家托育服務登記；屆期仍未辦理登記者，加重處新臺幣2萬元以上10萬元以下罰鍰，並令1個月內轉介收托的兒童，另得公布姓名——罰則額度和「具資格卻未辦理登記即收托」是一樣的。",
+  laws:[
+    {no:"第13條第2項",text:"居家托育人員提供居家托育服務期間，有暫停收托服務之需要，應向主管機關申請暫停收托服務。"},
+    {no:"第75條第2項",text:"具居家托育人員資格未依第十三條第一項規定辦理登記而提供居家托育服務者，或依第十三條第二項規定向主管機關申請暫停收托登記期間提供居家托育服務者，處新臺幣一萬元以上五萬元以下罰鍰，並令其限期辦理居家托育服務登記；屆期未辦理登記者，處新臺幣二萬元以上十萬元以下罰鍰，並令其於一個月內轉介其收托之兒童，另得公布其姓名。"}
+  ],
+  note:"暫停收托是居家托育人員主動申請的行政程序，目的是讓主管機關即時掌握人力異動狀況，避免家長誤送托至實際上未在服務的托育人員；若申請暫停後仍繼續收托，等同規避主管機關的管理掌握，也可能使受托兒童處於未受妥善監督的風險中，故明定與「具資格未辦理登記即收托」相同等級的罰則。"
+},
+{
+  cat:"penalty", pages:["home"],
   q:"居家托育人員洩漏家長或兒童的個人資料，會被罰嗎？",
   a:"會。托育相關人員（含居家托育人員）對兒童及其法定代理人或實際照顧兒童之人的資料，負有保密義務，除非家長同意或依法應予提供，否則不得洩漏。違反者處新臺幣3萬元以上15萬元以下罰鍰，並令限期改善，屆期未改善按次處罰。",
   laws:[{no:"第65條",text:"托育相關人員對兒童及其法定代理人或實際照顧兒童之人之資料，應予保密。但經兒童之法定代理人或實際照顧兒童之人同意或依其他法律規定應予提供者，不在此限。"}],
@@ -2251,7 +2272,7 @@ const synonymGroups = [
   ["托嬰中心","托育機構"],
   ["居托中心","居家托育服務中心","居托服務中心"],
   ["同住人","同住的人","同住的家人","同住成員","共住家人","共同居住之人"],
-  ["罰鍰","罰款"],
+  ["罰鍰","罰款","罰則","處罰","裁處","處份","處分"],
   ["子法","辦法","施行細則"],
   ["救命術","BLS","基本救命術","CPR"],
   ["兒少權法","兒童及少年福利與權益保障法"],
@@ -2267,7 +2288,7 @@ const synonymGroups = [
   ["通報","舉報","檢舉","通知"],
   ["未登","未辦理登記","未登記","未辦登記"],
   ["收托","托育"],
-  ["暫停收托","暫停托育"],
+  ["暫停收托","暫停托育","辦理停止"],
   ["調處","爭議處理","糾紛處理"],
   ["訪視","訪查"],
   ["負責人","機構負責人","業主"],
@@ -2281,7 +2302,8 @@ const synonymGroups = [
   ["良民證","警察刑事紀錄證明書","刑案紀錄證明","無犯罪紀錄證明"],
   ["無照","黑牌","未經許可","未具資格收托","未立案"],
   ["廢照","廢止設立許可","廢止許可"],
-  ["廢證","廢止登記"],
+  ["廢證","廢止登記","廢止其登記證"],
+  ["限期改善","限改"],
   ["停招","停止招收"],
   ["停辦","歇業"],
   ["家暴","家庭暴力"],
@@ -2349,23 +2371,53 @@ function highlight(text, terms){
 }
 
 function render(){
-  const kw = document.getElementById("searchInput").value.trim();
-  const terms = expandKeyword(kw);
+  const rawInput = document.getElementById("searchInput").value.trim();
+  // 支援以 & 、 + 、，、, 連結多個關鍵字（AND 邏輯，每個關鍵字都要命中）
+  const rawSegments = rawInput.split(/[&＆+,，]/).map(s=>s.trim()).filter(Boolean);
+  const segments = rawSegments.map(seg=>expandKeyword(seg));
+  const terms = segments.flat(); // 用於畫面標黃
   const area = document.getElementById("cardArea");
   area.innerHTML = "";
+
+  function hayOf(item){
+    const penHay = item.pen ? (item.pen.desc + item.pen.laws.map(l=>l.no+l.text).join("")) : "";
+    const subHay = item.subLaw ? (item.subLaw.desc + item.subLaw.laws.map(l=>l.no+l.text).join("")) : "";
+    const noteHay = item.note || "";
+    return {
+      q: item.q,
+      a: item.a,
+      cat: catName[item.cat] || "",
+      rest: item.laws.map(l=>l.no+l.text).join("") + penHay + subHay + noteHay
+    };
+  }
 
   let list = qa.filter(item=>{
     const inPage = searchAllPages ? true : item.pages.includes(currentPage);
     if(!inPage) return false;
     const catOk = currentCat==="all" || item.cat===currentCat;
     if(!catOk) return false;
-    if(!kw) return true;
-    const penHay = item.pen ? (item.pen.desc + item.pen.laws.map(l=>l.no+l.text).join("")) : "";
-    const subHay = item.subLaw ? (item.subLaw.desc + item.subLaw.laws.map(l=>l.no+l.text).join("")) : "";
-    const noteHay = item.note || "";
-    const hay = item.q + item.a + item.laws.map(l=>l.no+l.text).join("") + catName[item.cat] + penHay + subHay + noteHay;
-    return terms.some(t => hay.toLowerCase().includes(t.toLowerCase()));
+    if(segments.length===0) return true;
+    const h = hayOf(item);
+    const fullHay = (h.q + h.a + h.cat + h.rest).toLowerCase();
+    // 每個以 & 分隔的關鍵字都必須命中（AND），單一關鍵字內的同義詞則是 OR
+    return segments.every(segTerms => segTerms.some(t => fullHay.includes(t.toLowerCase())));
   });
+
+  // 相關度排序：命中問題本文 > 命中分類名稱 > 命中答案，最適配的排最前面
+  if(segments.length>0){
+    list = list.map(item=>{
+      const h = hayOf(item);
+      let score = 0;
+      segments.forEach(segTerms=>{
+        const lower = t=>t.toLowerCase();
+        if(segTerms.some(t=>h.q.toLowerCase().includes(lower(t)))) score += 10;
+        if(segTerms.some(t=>h.cat.toLowerCase().includes(lower(t)))) score += 6;
+        if(segTerms.some(t=>h.a.toLowerCase().includes(lower(t)))) score += 4;
+        if(segTerms.some(t=>h.rest.toLowerCase().includes(lower(t)))) score += 1;
+      });
+      return {item, score};
+    }).sort((x,y)=>y.score-x.score).map(x=>x.item);
+  }
 
   document.getElementById("countLine").textContent = `共 ${list.length} 筆結果`;
   document.getElementById("emptyMsg").style.display = list.length ? "none" : "block";
@@ -2373,6 +2425,7 @@ function render(){
   list.forEach((item)=>{
     const card = document.createElement("div");
     card.className = "card";
+
 
     const lawHtml = item.laws.map(l=>`
       <div class="lawBlock">
