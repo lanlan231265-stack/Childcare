@@ -179,14 +179,19 @@
     cursor:pointer;
   }
   .hintToggle{
-    font-size:11.5px;
-    color:var(--muted);
+    font-size:14.5px;
+    font-weight:bold;
+    color:var(--teal);
+    background:var(--mint);
+    padding:5px 12px;
+    border-radius:999px;
     cursor:pointer;
     user-select:none;
     white-space:nowrap;
   }
-  .hintToggle:hover{
-    color:var(--teal);
+  .hintToggle:hover, .hintToggle.active{
+    background:var(--teal);
+    color:#fff;
   }
   .counts{
     font-size:12px;
@@ -481,11 +486,11 @@
   <div class="searchBox">
     <input type="text" id="searchInput" placeholder="搜尋關鍵字，可用 & + , 連結多個">
     <div class="searchMeta">
+      <span class="hintToggle" id="hintToggle">ⓘ 搜尋技巧</span>
       <label class="searchAllToggle" id="searchAllLabel">
         <input type="checkbox" id="searchAllToggle">
         🔍 搜尋全部頁面
       </label>
-      <span class="hintToggle" id="hintToggle">ⓘ 搜尋技巧</span>
     </div>
     <p class="searchHint" id="searchHint" style="display:none;">💡 可同時輸入兩個以上的關鍵字：用「<b>&</b>」「<b>+</b>」「<b>,</b>」或「<b>，</b>」連接（例如：<b>罰則&通報</b>），系統會找出同時符合所有關鍵字的題目，並把最相關的排在最前面。勾選上方「搜尋全部頁面」可跨總則／居家托育人員／托育機構／居托服務中心一起找。</p>
     <div class="counts" id="countLine"></div>
@@ -2575,9 +2580,11 @@ document.getElementById("searchAllToggle").addEventListener("change", (e)=>{
 });
 document.getElementById("hintToggle").addEventListener("click", ()=>{
   const hint = document.getElementById("searchHint");
+  const btn = document.getElementById("hintToggle");
   const isHidden = hint.style.display === "none";
   hint.style.display = isHidden ? "block" : "none";
-  document.getElementById("hintToggle").textContent = isHidden ? "ⓘ 收合說明" : "ⓘ 搜尋技巧";
+  btn.textContent = isHidden ? "ⓘ 收合說明" : "ⓘ 搜尋技巧";
+  btn.classList.toggle("active", isHidden);
 });
 buildCatTabs();
 updatePageHead();
